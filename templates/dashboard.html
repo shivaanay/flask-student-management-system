@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Student Manager</title>
+
+<style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    body{
+        min-height:100vh;
+        background:#0d1117;
+        color:#f0f6fc;
+    }
+
+    .navbar{
+        height:70px;
+        background:#161b22;
+        border-bottom:1px solid #30363d;
+
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+
+        padding:0 40px;
+    }
+
+    .navbar .logo{
+        font-size:22px;
+        font-weight:600;
+    }
+
+    .navbar a{
+        color:#f0f6fc;
+        text-decoration:none;
+        margin-left:20px;
+    }
+
+    .navbar a:hover{
+        color:#58a6ff;
+    }
+
+    .container{
+        text-align:center;
+        padding-top:90px;
+    }
+
+    .container h1{
+        font-size:42px;
+        font-weight:700;
+        margin-bottom:12px;
+    }
+
+    .container p{
+        color:#8b949e;
+        margin-bottom:60px;
+        font-size:18px;
+    }
+
+    .cards{
+        display:flex;
+        justify-content:center;
+        gap:30px;
+        flex-wrap:wrap;
+    }
+
+    .card{
+        width:240px;
+        height:150px;
+
+        background:#161b22;
+
+        border:1px solid #30363d;
+
+        border-radius:18px;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+        text-decoration:none;
+        color:#f0f6fc;
+
+        font-size:20px;
+        font-weight:600;
+
+        transition:all 0.25s ease;
+    }
+
+    .card:hover{
+        transform:translateY(-6px);
+        border-color:#58a6ff;
+        box-shadow:0 12px 30px rgba(88,166,255,0.15);
+    }
+
+    .stats{
+        margin-bottom:40px;
+        color:#58a6ff;
+        font-size:20px;
+        font-weight:600;
+    }
+
+    .footer{
+        margin-top:80px;
+        color:#8b949e;
+        font-size:14px;
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <div class="logo">
+        Student Manager
+    </div>
+
+    <div>
+        Welcome, {{ session['user'] }}
+        <a href="/logout">Logout</a>
+    </div>
+
+</div>
+
+<div class="container">
+
+    <h1>Student Management System</h1>
+
+    <p>Manage student records with Flask & MySQL</p>
+
+    <div class="stats">
+        Total Students: {{ total_students }}
+    </div>
+
+    <div class="cards">
+
+        <a href="/students" class="card">
+            View Students
+        </a>
+
+        <a href="/add" class="card">
+            Add Student
+        </a>
+
+        <a href="/search" class="card">
+            Search Student
+        </a>
+
+    </div>
+
+    <div class="footer">
+        Flask • MySQL • HTML • CSS
+    </div>
+
+</div>
+
+</body>
+</html>

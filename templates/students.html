@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Student Manager</title>
+
+<style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    body{
+        background:#0d1117;
+        color:#f0f6fc;
+        min-height:100vh;
+    }
+
+    .navbar{
+        height:70px;
+        background:#161b22;
+        border-bottom:1px solid #30363d;
+
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+
+        padding:0 40px;
+    }
+
+    .navbar h2{
+        font-size:22px;
+        font-weight:600;
+    }
+
+    .navbar a{
+        text-decoration:none;
+        color:#f0f6fc;
+    }
+
+    .navbar a:hover{
+        color:#58a6ff;
+    }
+
+    .container{
+        max-width:1000px;
+        margin:50px auto;
+        padding:0 20px;
+    }
+
+    h1{
+        margin-bottom:25px;
+        text-align:center;
+    }
+
+    .table-box{
+        background:#161b22;
+        border:1px solid #30363d;
+        border-radius:18px;
+        overflow:hidden;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+    }
+
+    th{
+        background:#21262d;
+        color:#f0f6fc;
+        padding:16px;
+        text-align:center;
+    }
+
+    td{
+        padding:16px;
+        text-align:center;
+        border-top:1px solid #30363d;
+    }
+
+    tr:hover{
+        background:#1c2128;
+    }
+
+    .edit-btn{
+        color:#58a6ff;
+        text-decoration:none;
+        font-weight:600;
+    }
+
+    .delete-btn{
+        color:#f85149;
+        text-decoration:none;
+        font-weight:600;
+        margin-left:12px;
+    }
+
+    .edit-btn:hover,
+    .delete-btn:hover{
+        opacity:0.8;
+    }
+
+    .dashboard-btn{
+        display:inline-block;
+
+        margin-top:25px;
+
+        background:#238636;
+
+        color:white;
+
+        text-decoration:none;
+
+        padding:12px 18px;
+
+        border-radius:10px;
+
+        transition:0.25s;
+    }
+
+    .dashboard-btn:hover{
+        transform:translateY(-3px);
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Student Manager</h2>
+
+    <a href="/dashboard">
+        Dashboard
+    </a>
+
+</div>
+
+<div class="container">
+
+    <h1>Student Records</h1>
+
+    <div class="table-box">
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>CGPA</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for student in students %}
+
+            <tr>
+
+                <td>{{ student[0] }}</td>
+                <td>{{ student[1] }}</td>
+                <td>{{ student[2] }}</td>
+                <td>{{ student[3] }}</td>
+
+                <td>
+
+                    <a href="/edit/{{ student[0] }}"
+                       class="edit-btn">
+                        Edit
+                    </a>
+
+                    <a href="/delete/{{ student[0] }}"
+                       class="delete-btn"
+                       onclick="return confirm('Are you sure you want to delete this student?')">
+                       Delete
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    <a href="/dashboard"
+       class="dashboard-btn">
+        Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Search Student</title>
+
+<style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    body{
+        background:#0d1117;
+        color:#f0f6fc;
+        min-height:100vh;
+    }
+
+    .navbar{
+        height:70px;
+        background:#161b22;
+        border-bottom:1px solid #30363d;
+
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+
+        padding:0 40px;
+    }
+
+    .navbar h2{
+        font-size:22px;
+    }
+
+    .navbar a{
+        color:#f0f6fc;
+        text-decoration:none;
+    }
+
+    .navbar a:hover{
+        color:#58a6ff;
+    }
+
+    .container{
+        display:flex;
+        justify-content:center;
+        align-items:flex-start;
+        padding:60px 20px;
+    }
+
+    .search-box{
+        width:500px;
+
+        background:#161b22;
+
+        border:1px solid #30363d;
+
+        border-radius:18px;
+
+        padding:35px;
+    }
+
+    h1{
+        text-align:center;
+        margin-bottom:30px;
+    }
+
+    label{
+        display:block;
+        margin-bottom:10px;
+    }
+
+    input{
+        width:100%;
+
+        padding:12px;
+
+        border-radius:10px;
+
+        border:1px solid #30363d;
+
+        background:#0d1117;
+
+        color:#f0f6fc;
+
+        margin-bottom:20px;
+    }
+
+    input:focus{
+        outline:none;
+        border-color:#58a6ff;
+    }
+
+    button{
+        width:100%;
+
+        padding:12px;
+
+        border:none;
+
+        border-radius:10px;
+
+        background:#58a6ff;
+
+        color:white;
+
+        font-size:16px;
+
+        font-weight:600;
+
+        cursor:pointer;
+
+        transition:0.25s;
+    }
+
+    button:hover{
+        transform:translateY(-3px);
+        opacity:0.9;
+    }
+
+    .result{
+        margin-top:30px;
+
+        padding:20px;
+
+        background:#0d1117;
+
+        border:1px solid #30363d;
+
+        border-radius:12px;
+    }
+
+    .result h3{
+        margin-bottom:15px;
+        color:#58a6ff;
+    }
+
+    .result p{
+        margin-bottom:10px;
+    }
+
+    .back-btn{
+        display:block;
+
+        text-align:center;
+
+        margin-top:20px;
+
+        text-decoration:none;
+
+        color:#58a6ff;
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>Student Manager</h2>
+    <a href="/dashboard">Dashboard</a>
+</div>
+
+<div class="container">
+
+    <div class="search-box">
+
+        <h1>Search Student</h1>
+
+        <form method="POST">
+
+            <label>Enter Roll Number</label>
+
+            <input type="text"
+                   name="roll_no"
+                   required>
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+        {% if student %}
+
+        <div class="result">
+            <h3>Student Found</h3>
+            <p><strong>ID:</strong> {{ student[0] }}</p>
+            <p><strong>Name:</strong> {{ student[1] }}</p>
+            <p><strong>Roll No:</strong> {{ student[2] }}</p>
+            <p><strong>CGPA:</strong> {{ student[3] }}</p>
+        </div>
+        {% elif request.method == 'POST' %}
+        <div class="result">
+            <h3 style="color:#f85149;">
+                Student Not Found
+            </h3>
+            <p>
+                No student exists with that roll number.
+            </p>
+        </div>
+        {% endif %}
+
+        <a href="/dashboard" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
